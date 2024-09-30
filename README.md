@@ -47,3 +47,12 @@ Desenvolvedores e empresas podem visualizar suas correspondências (matches) ap�
 Suporte para Upload de Arquivos:
 Empresas podem fazer upload de logos.
 Desenvolvedores podem fazer upload de fotos e currículos.
+
+
+
+Images:
+![Captura de tela 2024-09-30 152444](https://github.com/user-attachments/assets/c2a3a2d4-b693-451f-98ad-dcdca9c9cad0)
+![Captura de tela 2024-09-30 152516](https://github.com/user-attachments/assets/da1817ff-384e-4a9a-821d-5f11b93784c9)
+
+
+
