@@ -1,6 +1,7 @@
 # Tinder Job
 Trabalho de banco de dados 2 chamado Tinder Job
 
+![Captura de tela 2024-09-30 152501](https://github.com/user-attachments/assets/16644578-1a4e-4d17-9172-6d8c9a3df143)
 
 # Requisitos Principais:
 
