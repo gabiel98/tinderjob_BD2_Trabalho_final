@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Fale Conosco{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Fale Conosco</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="mensagem" class="form-label">Mensagem</label>
+            <textarea class="form-control" id="mensagem" name="mensagem" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+    {% with messages = get_flashed_messages(category_filter=['success']) %}
+      {% if messages %}
+        <div class="alert alert-success mt-3">
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+</div>
+{% endblock %}

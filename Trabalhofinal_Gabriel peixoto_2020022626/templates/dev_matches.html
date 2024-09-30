@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Meus Matches{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Meus Matches</h2>
+    {% if matches %}
+        <ul class="list-group">
+        {% for empresa in matches %}
+            <li class="list-group-item">
+                <h3>{{ empresa['nome_empresa'] }}</h3>
+                <p><strong>Setor:</strong> {{ empresa['setor'] }}</p>
+                <p><strong>Habilidades Procuradas:</strong> {{ empresa['habilidades'] }}</p>
+                <p><strong>Carga Horária:</strong> {{ empresa['horas_semanais'] }} horas semanais e {{ empresa['horas_diarias'] }} horas por dia</p>
+                <p><strong>Salário Ofertado:</strong> R$ {{ "{:.2f}".format(empresa['salario_ofertado']) }} mil</p>
+                <p><strong>Experiência Necessária:</strong> {{ empresa['experiencia_necessaria'] }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Você ainda não tem matches.</p>
+    {% endif %}
+    <a href="{{ url_for('dev_profile', dev_id=dev_id) }}" class="btn btn-primary mt-3">Voltar ao Meu Perfil</a>
+</div>
+{% endblock %}

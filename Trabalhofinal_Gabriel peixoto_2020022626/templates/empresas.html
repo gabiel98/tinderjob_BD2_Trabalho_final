@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Empresas Cadastradas{% endblock %}
+
+{% block content %}
+<div id='containerHome' class="container">
+
+    {% if dev %}
+        <div class="text-right">
+            <a href="{{ url_for('dev_profile', dev_id=dev['id']) }}" class="btn btn-primary">Meu Perfil</a>
+        </div>
+    {% endif %}
+
+    {% if empresas %}
+        {% set empresa = empresas[0] %}
+        <div class="profile-card tinder-card text-center mb-4">
+            {% if empresa['logo'] %}
+            <img src="{{ url_for('static', filename='logo/' ~ empresa['logo']) }}" alt="Logo da Empresa" class="profile-image tinder-image2 mb-3"/>
+            {% else %}
+            <img src="{{ url_for('static', filename='logo/default.png') }}" alt="Logo Padrão" class="profile-image tinder-image mb-3"/>
+            {% endif %}
+            <h2>{{ empresa['nome_empresa'] }}</h2>
+            <p><strong>Setor:</strong> {{ empresa['setor'] }}</p>
+            <p><strong>Habilidades Procuradas:</strong> {{ empresa['habilidades'] }}</p>
+            <p><strong>Carga Horária:</strong> {{ empresa['horas_semanais'] }} horas semanais e {{ empresa['horas_diarias'] }} horas por dia</p>
+            <p><strong>Salário Ofertado:</strong> R$ {{ "{:.2f}".format(empresa['salario_ofertado']) }} mil</p>
+            <p><strong>Experiência Necessária:</strong> {{ empresa['experiencia_necessaria'] }}</p>
+
+            {% if dev_id %}
+            <form method="POST" action="{{ url_for('dev_like', empresa_id=empresa['id']) }}">
+                <input type="hidden" name="dev_id" value="{{ dev_id }}">
+                <button type="submit" name="action" value="like" class="btn btn-success mx-2">Sim</button>
+                <button type="submit" name="action" value="dislike" class="btn btn-danger mx-2">Não</button>
+            </form>
+            {% else %}
+            <p>Por favor, faça <a href="{{ url_for('dev_login') }}">login</a> como desenvolvedor para interagir com as empresas.</p>
+            {% endif %}
+        </div>
+    {% else %}
+        <p>Não há mais empresas para mostrar.</p>
+    {% endif %}
+</div>
+
+{% with messages = get_flashed_messages(category_filter=['match']) %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+      <div class="alert alert-success" role="alert">
+          {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+{% endblock %}

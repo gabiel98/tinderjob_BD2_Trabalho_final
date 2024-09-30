@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    {% block styles %}
+    {{ bootstrap.load_css() }}
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    {% endblock %}
+
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2e8abb;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('home') }}"><img src="/static/images/log-job.png" alt="Logo do site" width="100px">Tinder Job</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('home') }}">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('dev_login') }}">Login de Desenvolvedor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('empresa_login') }}">Login de Empresa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('fale_conosco') }}">Fale Conosco</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        {% block content %} {% endblock %}
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>Feito por Gabriel Peixoto</p>
+        </div>
+    </footer>
+</body>
+</html>

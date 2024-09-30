@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block title %}Dev Cadastro{% endblock %}
+
+{% block content %}
+<div id='containerHome' class="container">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            <img src="/static/images/log-job.png" alt='Logo projeto' width="200px"/>
+            <h2>Dev Cadastro</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-4 mid-section">
+            <form method="POST" enctype="multipart/form-data"> 
+                {{ form.csrf_token }}
+                <div class="form-group">
+                    {{ form.name.label(class="form-label") }}
+                    {{ form.name(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label(class="form-label") }}
+                    {{ form.email(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.cel.label(class="form-label") }}
+                    {{ form.cel(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.habilidades.label(class="form-label") }}
+                    {{ form.habilidades(class="form-check") }} 
+                </div>
+                <div class="form-group">
+                    {{ form.foto.label(class="form-label") }}
+                    {{ form.foto(class="form-control") }} 
+                </div>
+                <div class="form-group">
+                    {{ form.curriculo.label(class="form-label") }}
+                    {{ form.curriculo(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.tem_experiencia.label(class="form-label") }}
+                    {{ form.tem_experiencia(class="form-control") }}
+                </div>
+                <div class="form-group position-relative">
+                    {{ form.senha.label(class="form-label") }}
+                    <div class="input-group">
+                        {{ form.senha(class="form-control") }}
+                        <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
+                            <i class="fa fa-eye text-secondary"></i>
+                        </span>
+                    </div>
+                </div>
+                {{ form.submit(class="btn btn-primary mt-3") }}
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#{{ form.senha.id }}');
+
+    togglePassword.addEventListener('click', function () {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+</script>
+{% endblock %}

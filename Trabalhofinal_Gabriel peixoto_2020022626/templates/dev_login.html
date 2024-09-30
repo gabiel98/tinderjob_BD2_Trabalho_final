@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Dev Login{% endblock %}
+
+{% block content %}
+<div id='containerHome' class="container">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            <img src="/static/images/log-job.png" alt='Logo projeto' width="200px"/>
+            <h2>Dev Login</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-4 mid-section"> 
+            <form method="POST">
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example1">E-mail</label>
+                    <input type="email" name="email" id="form2Example1" class="form-control" />
+                </div>
+            
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example2">Senha</label>
+                    <input type="password" name="senha" id="form2Example2" class="form-control" />
+                </div>
+            
+                <button type="submit" class="btn btn-primary btn-block mb-4">Entrar</button>
+                <div class="text-center">
+                    <p>Não é um desenvolvedor registrado? <a href="{{ url_for('dev_register') }}">Registre-se</a></p>
+                </div>
+            
+                {% if error %}
+                <p class="text-danger">{{ error }}</p>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

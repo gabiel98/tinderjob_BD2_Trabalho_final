@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Meus Matches{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Meus Matches</h2>
+    {% if matches %}
+        <ul class="list-group">
+        {% for dev in matches %}
+            <li class="list-group-item">
+                <h3>{{ dev['name'] }}</h3>
+                <p><strong>Email:</strong> {{ dev['email'] }}</p>
+                <p><strong>Celular:</strong> {{ dev['cel'] }}</p>
+                <p><strong>Habilidades:</strong> {{ dev['habilidades'] }}</p>
+                <p><strong>Experiência:</strong> {{ dev['tem_experiencia'] }}</p>
+                {% if dev['curriculo'] %}
+                    <p><a href="{{ url_for('static', filename='curriculos/' ~ dev['curriculo']) }}" target="_blank">Visualizar Currículo</a></p>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Você ainda não tem matches.</p>
+    {% endif %}
+    <a href="{{ url_for('empresa_profile', empresa_id=empresa_id) }}" class="btn btn-primary mt-3">Voltar ao Meu Perfil</a>
+</div>
+{% endblock %}

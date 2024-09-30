@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Empresa Login{% endblock %}
+
+{% block content %}
+<div id='containerHome' class="container">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+          <img
+            src="/static/images/log-job.png"
+            alt='Logo projeto' width="200px"/>
+            <h2>Empresa Login</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-4 mid-section">
+        <form method="POST">
+            <div data-mdb-input-init class="form-outline mb-4">
+              <label class="form-label" for="formCNPJ">CNPJ</label>
+              <input type="text" id="formCNPJ" name="cnpj" class="form-control" placeholder="Digite o CNPJ" required />
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+              <label class="form-label" for="form2Example2">Senha</label>
+              <input type="password" id="form2Example2" name="senha" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mb-4">Entrar</button>
+            <div class="text-center">
+              <p>Não é uma empresa registrada aqui?<a href="{{url_for('empresa_register')}}"> Registre-se</a></p>
+            </div>
+            {% if error %}
+                <div class="alert alert-danger mt-3">{{ error }}</div>
+            {% endif %}
+          </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

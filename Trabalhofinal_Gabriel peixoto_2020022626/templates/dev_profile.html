@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Perfil do Desenvolvedor{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            {% if dev[6] %}
+            <img src="{{ url_for('static', filename='fotos/' ~ dev[6]) }}" alt='Foto do Desenvolvedor' class="img-circular" width="250" height="250"/>
+            {% else %}
+            <img src="{{ url_for('static', filename='fotos/default.png') }}" alt='Foto Padrão' class="img-circular" width="200" height="200"/>
+            {% endif %}
+            <h2>Bem-vindo, {{ dev[1] }}!</h2>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-4 mid-section">
+            <h3>Detalhes do Perfil</h3>
+            <p><strong>Nome:</strong> {{ dev['name'] }}</p>
+            <p><strong>Email:</strong> {{ dev['email'] }}</p>
+            <p><strong>Celular:</strong> {{ dev['cel'] }}</p>
+            <p><strong>Habilidades:</strong> {{ dev['habilidades'] }}</p>
+            <p><strong>Experiência:</strong> {{ dev['tem_experiencia'] }}</p>
+            {% if dev['curriculo'] %}
+            <p><strong>Currículo:</strong> <a href="{{ url_for('static', filename='curriculos/' ~ dev['curriculo']) }}" target="_blank">Visualizar Currículo</a></p>
+            {% endif %}
+            
+            <div class="text-center mt-4">
+                <a href="{{ url_for('dev_swipe', dev_id=dev[0]) }}" class="btn btn-primary">Buscar Empresas</a>
+                <a href="{{ url_for('dev_matches', dev_id=dev[0]) }}" class="btn btn-success">Ver Matches</a>
+                <a href="{{ url_for('edit_dev_profile', dev_id=dev[0]) }}" class="btn btn-warning">Editar Perfil</a>
+                <a href="{{ url_for('dev_login') }}" class="btn btn-secondary mt-3">Sair</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

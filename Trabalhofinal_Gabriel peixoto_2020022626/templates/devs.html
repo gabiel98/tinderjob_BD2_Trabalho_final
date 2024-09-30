@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Desenvolvedores Cadastrados{% endblock %}
+
+{% block content %}
+<div id='containerHome' class="container">
+
+    {% if empresa %}
+        <div class="text-right">
+            <a href="{{ url_for('empresa_profile', empresa_id=empresa['id']) }}" class="btn btn-primary">Meu Perfil</a>
+        </div>
+    {% endif %}
+
+    {% if devs %}
+        {% set dev = devs[0] %}
+        <div class="profile-card tinder-card text-center mb-4">
+            {% if dev['foto'] %}
+            <img src="{{ url_for('static', filename='fotos/' ~ dev['foto']) }}" alt="Foto do Desenvolvedor" class="tinder-image mb-3"/>
+            {% else %}
+            <img src="{{ url_for('static', filename='fotos/default.png') }}" alt="Foto Padrão" class="tinder-image mb-3"/>
+            {% endif %}
+            <h2>{{ dev['name'] }}</h2>
+            <p><strong>Email:</strong> {{ dev['email'] }}</p>
+            <p><strong>Celular:</strong> {{ dev['cel'] }}</p>
+            <p><strong>Habilidades:</strong> {{ dev['habilidades'] }}</p>
+            <form method="POST" action="{{ url_for('empresa_like', dev_id=dev['id']) }}">
+                <input type="hidden" name="empresa_id" value="{{ empresa['id'] }}">
+                <button type="submit" name="action" value="like" class="btn btn-success mx-2">Sim</button>
+                <button type="submit" name="action" value="dislike" class="btn btn-danger mx-2">Não</button>
+            </form>
+        </div>
+    {% else %}
+        <p>Não há mais desenvolvedores para mostrar.</p>
+    {% endif %}
+</div>
+
+{% with messages = get_flashed_messages(category_filter=['match']) %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+      <div class="alert alert-success" role="alert">
+          {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+{% endblock %}

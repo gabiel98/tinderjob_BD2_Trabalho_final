@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Tinder Job{% endblock %}
+
+{% block content %}
+<div id='containerHome' class="container">
+  <div class="row">
+    <div class="col-12 text-center mb-1">
+      <img
+        src="/static/images/log-nome-job.png"
+        alt='Logo projeto'/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <h2>Entrar como:</h2>
+    </div>
+  </div>
+  <div class="row mt-4 d-flex justify-content-center align-items-center"
+    id='container-options'>
+    <div class="col-md-6 col-6 mb-3" id='divOpcionDev'>
+        <a href="{{ url_for('dev_login')}}">
+          <div class="card" id='optionDev'>
+            <div class="card-body text-center">
+              <h5
+                class="card-title d-flex justify-content-center align-items-center">Desenvolvedor</h5>
+              <img class="img-fluid" src="/static/images/icon-dev.png"
+                alt="IconDev" />
+            </div>
+          </div>
+        </a>
+      </div>
+    <div class="col-md-6 col-6 mb-3" id='divOpcionEmp'>
+      <a href="{{ url_for('empresa_login')}}">
+        <div class="card" id='optionEmp'>
+          <div class="card-body text-center">
+            <h5
+              class="card-title d-flex justify-content-center align-items-center">Empresa</h5>
+            <img class="img-fluid" src="/static/images/icon-emp.png"
+              alt="IconDev" />
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <h2 class="mt-5">Empresas Cadastradas</h2>
+    </div>
+  </div>
+  <div class="row mt-4 d-flex justify-content-center align-items-center">
+    {% for empresa in empresas %}
+      <div class="col-md-2 col-4 mb-3">
+        <img src="{{ url_for('static', filename='logo/' ~ empresa['logo']) }}" alt="Logo da Empresa" class="img-fluid"/>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
