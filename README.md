@@ -3,7 +3,9 @@ Trabalho de banco de dados 2 chamado Tinder Job
 
 
 # Requisitos Principais:
+
 Funcionais:
+
 
 Cadastro de Desenvolvedores:
 Desenvolvedores podem criar perfis com nome, e-mail, celular, habilidades, experiência, foto e currículo.
